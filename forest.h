@@ -1,5 +1,11 @@
+#include <optional>
+#include <utility>
+
 class Forest 
 {
+    //type of elements stored in nodes (Andrzej mozesz zmienic jesli chcesz)
+    typedef std::pair<int, int> T;
+
 public:
     //creates a forest with isolated nodes 1 .. n
     Forest(int n);
@@ -13,9 +19,8 @@ public:
     bool sameTree(int a, int b);
 
     //store element x in node v
-    void store(int v, int x);
+    void store(int v, T x);
 
     //get any element stored in a vertex connected to v and remove it
-    //returns 0 if there are no such elements
-    int get(int v);
+    std::optional<T> get(int v);
 };
