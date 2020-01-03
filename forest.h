@@ -7,6 +7,9 @@ public:
     void addEdge(int a, int b);
     void removeEdge(int a, int b);
 
+    //returns true if there is edge between a and b in the forest
+    bool hasEdge(int a, int b);
+
     bool sameTree(int a, int b);
 
     //store element x in node v
