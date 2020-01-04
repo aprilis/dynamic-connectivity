@@ -4,7 +4,7 @@
 class Forest 
 {
     //type of elements stored in nodes (Andrzej mozesz zmienic jesli chcesz)
-    typedef std::pair<int, int> T;
+    typedef int T;
 
 public:
     //creates a forest with isolated nodes 1 .. n
