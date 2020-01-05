@@ -9,6 +9,9 @@ class Forest
 public:
     //creates a forest with isolated nodes 1 .. n
     Forest(int n);
+    
+    //returns the number of vertices in the same tree as v
+    int getSize(int v);
 
     void addEdge(int a, int b);
     void removeEdge(int a, int b);

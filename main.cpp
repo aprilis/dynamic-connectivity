@@ -13,7 +13,7 @@ class Holm {
 	
 	bool getTreeEdge(int f, int v, int &eId) {
 		do {
-			eId = FNT[f].get(v).value_or(-1);
+			eId = FT[f].get(v).value_or(-1);
 			
 			if (eId==-1) return false;
 			
@@ -54,6 +54,7 @@ class Holm {
 	}
 	
 	void removeNonTreeEdge (int f, int eId) {
+		assert(Lvl[eId]==f);
 		Lvl[eId] = -1;
 	}
 	
@@ -91,8 +92,56 @@ class Holm {
 			removeNonTreeEdge(Lvl[eId], eId);
 		}
 		else {	/*it was a tree edge */
-		
 			
+			/*erase */
+			int a = Edge[eId].first;
+			int b = Edge[eId].second;
+			int lvl = Lvl[eId];
+			Lvl[eId] = -1; //not valid anymore
+			
+			for (int i=0; i<=lvl; i++) {
+				FT[i].removeEdge(a, b);
+				FNT[i].removeEdge(a,b);
+			}
+			
+			/*find rep */
+			
+			for (int i=0; i<=lvl; i++) {
+				
+				/*find the smaller tree */
+				int smaller = a, larger = b;
+				if (FT[i].getSize(smaller) > FT[i].getSize(larger)) {
+					swap(smaller,larger);
+				}
+				
+				int treeId, repId;
+				
+				/*increase the ranks of tree edges which are level i */
+				while (getTreeEdge(i, smaller, treeId)) {
+					storeTreeEdge(i+1, treeId);
+				}
+				
+				while (getNonTreeEdge(i, smaller, repId)) {
+					
+					if (FT[i].sameTree(Edge[repId].first, Edge[repId].second)) {
+						/* increase the level to pay for this operation */
+						removeNonTreeEdge(i, repId);
+						storeNonTreeEdge(i+1, repId);
+					}
+					else {
+						/*I have found the replacement */
+						storeTreeEdge(i, repId);
+						Tree[repId] = true;
+						
+						/*add it on all lower levels */
+						for (int lower = 0; lower < i; i++) {
+							addTreeEdge(lower, repId);
+						}
+						/* no need to look further */
+						return;
+					}
+				}
+			}
 		}	
 	}
 	
@@ -110,5 +159,5 @@ class Holm {
 };	
 
 int main() {
-
+	
 }
