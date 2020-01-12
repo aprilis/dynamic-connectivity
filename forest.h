@@ -1,10 +1,19 @@
 #include <optional>
 #include <utility>
+#include <vector>
+#include <unordered_map>
+#include "treap.h"
 
 class Forest 
 {
     //type of elements stored in nodes (Andrzej mozesz zmienic jesli chcesz)
     typedef int T;
+
+    vector<unordered_map<int, treap*>> edges;
+    vector<treap*> repr;
+    vector<vector<T>> storage;
+
+    void setRepr(int v);
 
 public:
     //creates a forest with isolated nodes 1 .. n
