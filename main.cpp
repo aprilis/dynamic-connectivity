@@ -66,14 +66,12 @@ class Holm {
 		return FT[0].sameTree(a,b);
 	}
 	
-	bool addEdge (int a, int b) {
+	int addEdge (int a, int b) {
 		Lvl[id] = -1;
 		Tree[id] = false;
 		Edge[id] = {a,b};
 		
-		bool ret = !FT[0].sameTree(a,b);
-		
-		if (ret) {
+		if (!FT[0].sameTree(a,b)) {
 			storeTreeEdge(0, id);
 			Tree[id] = true;
 		}
@@ -81,8 +79,7 @@ class Holm {
 			storeNonTreeEdge(0, id);
 		}
 		
-		id++;
-		return ret;
+		return id++;
 	}
 	
 	void removeEdge (int eId) {
@@ -104,7 +101,7 @@ class Holm {
 				FNT[i].removeEdge(a,b);
 			}
 			
-			/*find rep */
+			/*find replacement edge */
 			
 			for (int i=0; i<=lvl; i++) {
 				
@@ -158,6 +155,36 @@ class Holm {
 	}
 };	
 
+//Holm DC;
 int main() {
 	
+	/*
+	n -- number of vertices numbered 1..n 
+	m -- number of operations: ! a b, ? a b, X a
+	add en edge between a and b, query a and b, remove the \(i\)-th added edge (0-indexed)
+	*/
+	/*
+	int n, m;
+	scanf ("%d %d", &n, &m);
+	DC.init(n);
+	for (int i=0; i<m; i++)
+	{
+		int a, b;
+		char c;
+		scanf (" %c", &c);
+		if (c=='!') {
+			scanf ("%d %d", &a, &b);
+			DC.addEdge(a,b);
+		}
+		if (c=='?') {
+			scanf ("%d %d", &a, &b);
+			if (DC.query(a, b)) printf ("YES\n");
+			else printf ("NO\n");
+		}
+		if (c=='X') {
+			scanf ("%d", &a);
+			DC.removeEdge(a);
+		}
+	}
+	*/
 }
