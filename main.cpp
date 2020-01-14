@@ -2,14 +2,15 @@
 #include "forest.h"
 using namespace std;
 
-const int L = 4;
+const int L = 20;
 const int N = 1<<L; //maximal number of vertices
-const int M = 100; //maximal number of edge insertions
+const int M = 1000000; //maximal number of edge insertions
 class Holm {
 	pair <int, int> Edge[M];
 	bool Tree[M];
 	int Lvl[M], n, log, id;
-	Forest FT[L], FNT[L];
+	//Forest FT[L], FNT[L];
+	vector <Forest> FT, FNT;
 	
 	bool getTreeEdge(int f, int v, int &eId) {
 		do {
@@ -148,14 +149,20 @@ class Holm {
 		id = 0;
 		while ((1<<log) < n) log++;
 		
+		FT.resize(log+1, Forest(n));
+		FNT.resize(log+1, Forest(n));
+		/*
 		for (int l=0; l<=log; l++) {
 			FT[l] = Forest(n);
 			FNT[l] = Forest(n);
 		}
+		*/
 	}
+
+	Holm () {};
 };	
 
-//Holm DC;
+Holm DC;
 int main() {
 	
 	/*
@@ -163,10 +170,16 @@ int main() {
 	m -- number of operations: ! a b, ? a b, X a
 	add en edge between a and b, query a and b, remove the \(i\)-th added edge (0-indexed)
 	*/
-	/*
+	
 	int n, m;
+
+	fprintf(stderr, "podaj parametry\n");
+
 	scanf ("%d %d", &n, &m);
+
 	DC.init(n);
+
+	
 	for (int i=0; i<m; i++)
 	{
 		int a, b;
@@ -174,7 +187,9 @@ int main() {
 		scanf (" %c", &c);
 		if (c=='!') {
 			scanf ("%d %d", &a, &b);
-			DC.addEdge(a,b);
+			int id = DC.addEdge(a,b);
+
+			fprintf(stderr, "Added %d %d: id = %d\n", a, b, id);
 		}
 		if (c=='?') {
 			scanf ("%d %d", &a, &b);
@@ -186,5 +201,5 @@ int main() {
 			DC.removeEdge(a);
 		}
 	}
-	*/
+	
 }
