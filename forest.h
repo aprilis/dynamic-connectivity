@@ -19,6 +19,8 @@ public:
     //creates a forest with isolated nodes 1 .. n
     Forest(int n);
     
+    ~Forest();
+    
     //returns the number of vertices in the same tree as v
     int getSize(int v);
 

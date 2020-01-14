@@ -52,7 +52,7 @@ pair<treap*, treap*> split(treap *t, int k) //dzieli na prefiks dlugosci k i res
     {
         auto p = split(t->right, k - items(t->left) - 1);
         t->right = p.first;
-        t->right->parent = t;
+        if(t->right) t->right->parent = t;
         t->parent = nullptr;
         t->recalc();
         return make_pair(t, p.second);
@@ -61,7 +61,7 @@ pair<treap*, treap*> split(treap *t, int k) //dzieli na prefiks dlugosci k i res
     {
         auto p = split(t->left, k);
         t->left = p.second;
-        t->left->parent = t;
+        if(t->left) t->left->parent = t;
         t->parent = nullptr;
         t->recalc();
         return make_pair(p.first, t);

@@ -26,6 +26,13 @@ Forest::Forest(int n) : edges(n + 1), repr(n + 1), storage(n + 1)
 
 }
 
+Forest::~Forest()
+{
+    for(auto &v: edges)
+        for(auto [_, e]: v)
+            delete e;
+}
+
 void Forest::addEdge(int a, int b)
 {
     auto ab = new treap, ba = new treap;
@@ -52,6 +59,8 @@ void Forest::removeEdge(int a, int b)
     merge(r1, r3);
     if(repr[a] == ab) setRepr(a);
     if(repr[b] == ba) setRepr(b);
+    delete ab;
+    delete ba;
 }
 
 int Forest::getSize(int v)

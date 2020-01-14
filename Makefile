@@ -11,6 +11,10 @@ check:
 	g++ $(CXXFLAGS) brute.cpp -o brute
 	g++ $(CXXFLAGS) gen.cpp -o gen
 
+debug: $(SRC) $(HD)
+	g++ $(CXXFLAGS) $(SRC) -g -o dc-debug
+
+all: dc check debug
+
 clean:
-	rm dc
-	rm brute
+	rm dc dc-debug brute
