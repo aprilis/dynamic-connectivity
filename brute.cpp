@@ -19,7 +19,7 @@ int main ()
 {
     int m;
     scanf ("%d %d", &n, &m);
-
+    int id = 0;
     for (int i=0; i<m; i++)
     {
         int a, b, no;
@@ -29,7 +29,8 @@ int main ()
             scanf ("%d %d", &a, &b);
             E[a][b]++;
             E[b][a]++;
-            Edge[i] = {a,b};
+            Edge[id] = {a,b};
+            id++;
         }
         if (c=='?') {
             scanf ("%d %d", &a, &b);
