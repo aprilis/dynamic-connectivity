@@ -2,3 +2,6 @@
 dc
 dc-debug
 brute
+gen
+test.in
+*.out

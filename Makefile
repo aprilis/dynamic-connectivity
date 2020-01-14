@@ -1,4 +1,4 @@
-CXXFLAGS = -std=c++17 -O2 -Wall -Wextra -Wshadow -fsanitize=address -fsanitize=undefined -static-libasan
+CXXFLAGS = -std=c++17 -Wall -Wextra -Wshadow
 
 SRC = forest.cpp treap.cpp main.cpp
 #$(wildcard *.cpp)
