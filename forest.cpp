@@ -1,4 +1,5 @@
 #include "forest.h"
+#include <cassert>
 using namespace std;
 
 treap* make_first(treap *t)
@@ -52,10 +53,11 @@ void Forest::removeEdge(int a, int b)
     auto i1 = ab->index(), i2 = ba->index();
     if(i1 > i2) swap(i1, i2);
     auto r = ab->root();
-    auto [r12, r3] = split(r, i2);
-    auto [r1, r2] = split(r12, i1);
-    r2 = split(r2, 1).second;
-    r3 = split(r3, 1).second;
+    auto [r12, pr3] = split(r, i2);
+    auto [r1, pr2] = split(r12, i1);
+    auto [s1, r2] = split(pr2, 1);
+    auto [s2, r3] = split(pr3, 1);
+    assert((s1 == ab && s2 == ba) || (s1 == ba && s2 == ab));
     merge(r1, r3);
     if(repr[a] == ab) setRepr(a);
     if(repr[b] == ba) setRepr(b);
