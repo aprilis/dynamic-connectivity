@@ -12,6 +12,18 @@ class Holm {
 	//Forest FT[L], FNT[L];
 	vector <Forest> FT, FNT;
 	
+	public:
+	
+	void printEdges() {
+		fprintf(stderr, "Print edges: \n");
+		for (int i = 0; i<id; i++) if (Lvl[i]>=0){
+			fprintf(stderr, "%d: (%d %d) [%d] - lvl %d\n", i, Edge[i].first, Edge[i].second, (int)Tree[i], Lvl[i]);
+		}
+		fprintf(stderr, "\n");
+	}
+
+	private:
+
 	void printSizesPriv(int f) {
 		fprintf(stderr, "\nprintSizes[%d]: ", f);
 		for (int i=1; i<=n; i++) {
@@ -72,6 +84,7 @@ class Holm {
 	void storeNonTreeEdge(int f, int eId) {
 		
 		fprintf(stderr, "storeNonTreeEdge(%d, %d)\n", f, eId);
+		assert(!FNT[f].sameTree(!Edge[eId].first, Edge[eId].second));
 
 		FNT[f].store(Edge[eId].first, eId);
 		FNT[f].store(Edge[eId].second, eId);
@@ -138,12 +151,13 @@ class Holm {
 			for (int i=0; i<=lvl; i++) {
 				removeTreeEdge(i, eId);
 				
-				printSizesPriv(i);
+				//printSizesPriv(i);
 			}
 			
 			/*find replacement edge */
+			/* searching from the topmost level */
 			
-			for (int i=0; i<=lvl; i++) {
+			for (int i=lvl; i>=0; i--) {
 
 				/*find the smaller tree */
 				int smaller = a, larger = b;
@@ -171,11 +185,14 @@ class Holm {
 					}
 					else {
 						/*I have found the replacement */
+
+						fprintf(stderr, "Found replacement\n");
+
 						storeTreeEdge(i, repId);
 						Tree[repId] = true;
 						
 						/*add it on all lower levels */
-						for (int lower = 0; lower < i; i++) {
+						for (int lower = 0; lower < i; lower++) {
 							addTreeEdge(lower, repId);
 						}
 						/* no need to look further */
@@ -231,6 +248,9 @@ int main() {
 	
 	for (int i=0; i<m; i++)
 	{
+		
+		fprintf (stderr, "\nNowe zapytanie - %d \n", i);
+
 		int a, b;
 		char c;
 		scanf (" %c", &c);
@@ -250,7 +270,7 @@ int main() {
 			DC.removeEdge(a);
 		}
 
-		DC.printSizes();
+		DC.printEdges();
 	}
 	
 }

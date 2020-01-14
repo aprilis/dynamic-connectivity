@@ -1,64 +1,248 @@
-storeTreeEdge(0 0): 5 3
-addTreeEdge(0 0): 5 3
-Added 5 3: id = 0
 
-printSizes: 1 1 2 1 2 
+Nowe zapytanie 
+storeTreeEdge(0 0): 1 5
+addTreeEdge(0 0): 1 5
+Added 1 5: id = 0
+Print edges: 
+0: (1 5) [1] - lvl 0
 
-removeTreeEdge(0 0): 5 3
 
-printSizes[0]: 1 1 1 1 1 
+Nowe zapytanie 
+storeTreeEdge(0 1): 4 1
+addTreeEdge(0 1): 4 1
+Added 4 1: id = 1
+Print edges: 
+0: (1 5) [1] - lvl 0
+1: (4 1) [1] - lvl 0
 
-lvl 0: smaller: 5, bigger: 3
+
+Nowe zapytanie 
+storeTreeEdge(0 2): 3 4
+addTreeEdge(0 2): 3 4
+Added 3 4: id = 2
+Print edges: 
+0: (1 5) [1] - lvl 0
+1: (4 1) [1] - lvl 0
+2: (3 4) [1] - lvl 0
+
+
+Nowe zapytanie 
+removeTreeEdge(0 1): 4 1
+lvl 0: smaller: 4, bigger: 1
+getTreeEdge(0 4)
+got 2
+storeTreeEdge(1 2): 3 4
+addTreeEdge(1 2): 3 4
+getTreeEdge(0 4)
+got 1
+got 2
+got -1
+getNonTreeEdge(0 4)
+got -1
+Print edges: 
+0: (1 5) [1] - lvl 0
+2: (3 4) [1] - lvl 1
+
+
+Nowe zapytanie 
+storeTreeEdge(0 3): 5 4
+addTreeEdge(0 3): 5 4
+Added 5 4: id = 3
+Print edges: 
+0: (1 5) [1] - lvl 0
+2: (3 4) [1] - lvl 1
+3: (5 4) [1] - lvl 0
+
+
+Nowe zapytanie 
+storeNonTreeEdge(0, 4)
+Added 5 1: id = 4
+Print edges: 
+0: (1 5) [1] - lvl 0
+2: (3 4) [1] - lvl 1
+3: (5 4) [1] - lvl 0
+4: (5 1) [0] - lvl 0
+
+
+Nowe zapytanie 
+removeTreeEdge(0 3): 5 4
+lvl 0: smaller: 5, bigger: 4
 getTreeEdge(0 5)
+got 3
+got 0
+storeTreeEdge(1 0): 1 5
+addTreeEdge(1 0): 1 5
+getTreeEdge(0 5)
+got 1
 got 0
 got -1
 getNonTreeEdge(0 5)
+got 4
+sameTree[0]: 5 1
+invalidate non tree edge 4 from 0storeNonTreeEdge(1, 4)
+getNonTreeEdge(0 5)
+got 4
 got -1
+Print edges: 
+0: (1 5) [1] - lvl 1
+2: (3 4) [1] - lvl 1
+4: (5 1) [0] - lvl 1
 
-printSizes: 1 1 1 1 1 
 
-storeTreeEdge(0 1): 1 5
-addTreeEdge(0 1): 1 5
-Added 1 5: id = 1
+Nowe zapytanie 
+storeTreeEdge(0 5): 1 2
+addTreeEdge(0 5): 1 2
+Added 1 2: id = 5
+Print edges: 
+0: (1 5) [1] - lvl 1
+2: (3 4) [1] - lvl 1
+4: (5 1) [0] - lvl 1
+5: (1 2) [1] - lvl 0
 
-printSizes: 2 1 1 1 2 
 
-storeTreeEdge(0 2): 2 3
-addTreeEdge(0 2): 2 3
-Added 2 3: id = 2
-
-printSizes: 2 2 2 1 2 
-
-removeTreeEdge(0 2): 2 3
-
-printSizes[0]: 2 1 1 1 2 
-
-lvl 0: smaller: 2, bigger: 3
-getTreeEdge(0 2)
+Nowe zapytanie 
+removeTreeEdge(0 2): 3 4
+removeTreeEdge(1 2): 3 4
+lvl 1: smaller: 3, bigger: 4
+getTreeEdge(1 3)
 got 2
 got -1
-getNonTreeEdge(0 2)
+getNonTreeEdge(1 3)
 got -1
+lvl 0: smaller: 3, bigger: 4
+getTreeEdge(0 3)
+got -1
+getNonTreeEdge(0 3)
+got -1
+Print edges: 
+0: (1 5) [1] - lvl 1
+4: (5 1) [0] - lvl 1
+5: (1 2) [1] - lvl 0
 
-printSizes: 2 1 1 1 2 
 
-sametree[0]: 3 2
+Nowe zapytanie 
+storeTreeEdge(0 6): 5 4
+addTreeEdge(0 6): 5 4
+Added 5 4: id = 6
+Print edges: 
+0: (1 5) [1] - lvl 1
+4: (5 1) [0] - lvl 1
+5: (1 2) [1] - lvl 0
+6: (5 4) [1] - lvl 0
 
-printSizes: 2 1 1 1 2 
 
-sametree[0]: 4 2
+Nowe zapytanie 
+storeNonTreeEdge(0, 7)
+Added 5 4: id = 7
+Print edges: 
+0: (1 5) [1] - lvl 1
+4: (5 1) [0] - lvl 1
+5: (1 2) [1] - lvl 0
+6: (5 4) [1] - lvl 0
+7: (5 4) [0] - lvl 0
 
-printSizes: 2 1 1 1 2 
 
-sametree[0]: 4 1
+Nowe zapytanie 
+storeNonTreeEdge(0, 8)
+Added 4 5: id = 8
+Print edges: 
+0: (1 5) [1] - lvl 1
+4: (5 1) [0] - lvl 1
+5: (1 2) [1] - lvl 0
+6: (5 4) [1] - lvl 0
+7: (5 4) [0] - lvl 0
+8: (4 5) [0] - lvl 0
 
-printSizes: 2 1 1 1 2 
 
-sametree[0]: 5 3
+Nowe zapytanie 
+storeNonTreeEdge(0, 9)
+Added 2 4: id = 9
+Print edges: 
+0: (1 5) [1] - lvl 1
+4: (5 1) [0] - lvl 1
+5: (1 2) [1] - lvl 0
+6: (5 4) [1] - lvl 0
+7: (5 4) [0] - lvl 0
+8: (4 5) [0] - lvl 0
+9: (2 4) [0] - lvl 0
 
-printSizes: 2 1 1 1 2 
 
-sametree[0]: 5 1
+Nowe zapytanie 
+removeTreeEdge(0 0): 1 5
+removeTreeEdge(1 0): 1 5
+lvl 1: smaller: 1, bigger: 5
+getTreeEdge(1 1)
+got 0
+got -1
+getNonTreeEdge(1 1)
+got 4
+sameTree[1]: 5 1
+Found replacement
+storeTreeEdge(1 4): 5 1
+addTreeEdge(1 4): 5 1
+addTreeEdge(0 4): 5 1
+Print edges: 
+4: (5 1) [1] - lvl 1
+5: (1 2) [1] - lvl 0
+6: (5 4) [1] - lvl 0
+7: (5 4) [0] - lvl 0
+8: (4 5) [0] - lvl 0
+9: (2 4) [0] - lvl 0
 
-printSizes: 2 1 1 1 2 
+
+Nowe zapytanie 
+storeTreeEdge(0 10): 3 5
+addTreeEdge(0 10): 3 5
+Added 3 5: id = 10
+Print edges: 
+4: (5 1) [1] - lvl 1
+5: (1 2) [1] - lvl 0
+6: (5 4) [1] - lvl 0
+7: (5 4) [0] - lvl 0
+8: (4 5) [0] - lvl 0
+9: (2 4) [0] - lvl 0
+10: (3 5) [1] - lvl 0
+
+
+Nowe zapytanie 
+storeNonTreeEdge(0, 11)
+Added 1 5: id = 11
+Print edges: 
+4: (5 1) [1] - lvl 1
+5: (1 2) [1] - lvl 0
+6: (5 4) [1] - lvl 0
+7: (5 4) [0] - lvl 0
+8: (4 5) [0] - lvl 0
+9: (2 4) [0] - lvl 0
+10: (3 5) [1] - lvl 0
+11: (1 5) [0] - lvl 0
+
+
+Nowe zapytanie 
+invalidate non tree edge 9 from 0Print edges: 
+4: (5 1) [1] - lvl 1
+5: (1 2) [1] - lvl 0
+6: (5 4) [1] - lvl 0
+7: (5 4) [0] - lvl 0
+8: (4 5) [0] - lvl 0
+10: (3 5) [1] - lvl 0
+11: (1 5) [0] - lvl 0
+
+
+Nowe zapytanie 
+removeTreeEdge(0 5): 1 2
+lvl 0: smaller: 2, bigger: 1
+getTreeEdge(0 2)
+got 5
+got -1
+getNonTreeEdge(0 2)
+got 9
+got -1
+Print edges: 
+4: (5 1) [1] - lvl 1
+6: (5 4) [1] - lvl 0
+7: (5 4) [0] - lvl 0
+8: (4 5) [0] - lvl 0
+10: (3 5) [1] - lvl 0
+11: (1 5) [0] - lvl 0
 
