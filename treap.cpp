@@ -27,9 +27,9 @@ int treap::index()
     int ans = ::items(left);
     if(parent)
     {
-        ans += parent->index();
+        ans += parent->index() + 1;
         if(parent->left == this)
-            ans -= items;
+            ans -= items + 1;
     }
     return ans;
 }
