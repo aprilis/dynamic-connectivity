@@ -9,7 +9,7 @@ for blocks in {1..8}
     {
         ./gen $1 $2 $3 $blocks $seed >test.in
         if [ $? -eq 1 ]; then
-            echo "went wrong"
+            echo "wring args"
             break
         fi
 

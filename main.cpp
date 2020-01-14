@@ -12,9 +12,17 @@ class Holm {
 	//Forest FT[L], FNT[L];
 	vector <Forest> FT, FNT;
 	
+	void printSizesPriv(int f) {
+		fprintf(stderr, "\nprintSizes[%d]: ", f);
+		for (int i=1; i<=n; i++) {
+			fprintf(stderr, "%d ", FT[f].getSize(i));
+		}
+		fprintf (stderr, "\n\n");
+	}
+
 	bool getTreeEdge(int f, int v, int &eId) {
 
-		fprintf(stderr, "getTreeEdge(%d %d %d)\n", f, v, eId);
+		fprintf(stderr, "getTreeEdge(%d %d)\n", f, v);
 
 		do {
 			eId = FT[f].get(v).value_or(-1);
@@ -30,7 +38,7 @@ class Holm {
 	
 	bool getNonTreeEdge(int f, int v, int &eId) {
 
-		fprintf(stderr, "getNonTreeEdge(%d %d %d)\n", f, v, eId);
+		fprintf(stderr, "getNonTreeEdge(%d %d)\n", f, v);
 
 		do {
 			eId = FNT[f].get(v).value_or(-1);
@@ -89,6 +97,7 @@ class Holm {
 
 	public:
 	
+
 	bool query (int a, int b) {
 
 		fprintf(stderr,"sametree[0]: %d %d\n", a, b);
@@ -129,18 +138,21 @@ class Holm {
 			for (int i=0; i<=lvl; i++) {
 				removeTreeEdge(i, eId);
 				
+				printSizesPriv(i);
 			}
 			
 			/*find replacement edge */
 			
 			for (int i=0; i<=lvl; i++) {
-				
+
 				/*find the smaller tree */
 				int smaller = a, larger = b;
 				if (FT[i].getSize(smaller) > FT[i].getSize(larger)) {
 					swap(smaller,larger);
 				}
 				
+				fprintf(stderr, "lvl %d: smaller: %d, bigger: %d\n", i, smaller, larger);
+
 				int treeId, repId;
 				
 				/*increase the ranks of tree edges which are level i */
@@ -190,6 +202,14 @@ class Holm {
 		*/
 	}
 
+	void printSizes() {
+		fprintf(stderr, "\nprintSizes: ");
+		for (int i=1; i<=n; i++) {
+			fprintf(stderr, "%d ", FT[0].getSize(i));
+		}
+		fprintf (stderr, "\n\n");
+	}
+
 	Holm () {};
 };	
 
@@ -229,6 +249,8 @@ int main() {
 			scanf ("%d", &a);
 			DC.removeEdge(a);
 		}
+
+		DC.printSizes();
 	}
 	
 }
