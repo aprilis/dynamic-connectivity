@@ -13,9 +13,14 @@ class Holm {
 	vector <Forest> FT, FNT;
 	
 	bool getTreeEdge(int f, int v, int &eId) {
+
+		fprintf(stderr, "getTreeEdge(%d %d %d)\n", f, v, eId);
+
 		do {
 			eId = FT[f].get(v).value_or(-1);
 			
+			fprintf(stderr, "got %d\n", eId);
+
 			if (eId==-1) return false;
 			
 		}while (Lvl[eId]!=f);
@@ -23,10 +28,15 @@ class Holm {
 		return true;
 	}
 	
-	bool getNonTreeEdge(int f, int v, int &eId) {	
+	bool getNonTreeEdge(int f, int v, int &eId) {
+
+		fprintf(stderr, "getNonTreeEdge(%d %d %d)\n", f, v, eId);
+
 		do {
 			eId = FNT[f].get(v).value_or(-1);
 			
+			fprintf(stderr, "got %d\n", eId);
+
 			if (eId==-1) return false;
 		}while (Lvl[eId]!=f);
 		
@@ -34,12 +44,16 @@ class Holm {
 	}
 	
 	void addTreeEdge(int f, int eId) {
-		
+		fprintf(stderr, "addTreeEdge(%d %d): %d %d\n", f, eId, Edge[eId].first, Edge[eId].second);
+
 		FT[f].addEdge(Edge[eId].first, Edge[eId].second);
 		FNT[f].addEdge(Edge[eId].first, Edge[eId].second);
 	}
 	
+	/*stores and adds this tree edge */
 	void storeTreeEdge(int f, int eId) {
+		fprintf(stderr, "storeTreeEdge(%d %d): %d %d\n", f, eId, Edge[eId].first, Edge[eId].second);
+
 		FT[f].store(Edge[eId].first, eId);
 		FT[f].store(Edge[eId].second, eId);
 		Lvl[eId] = f;
@@ -48,6 +62,9 @@ class Holm {
 	}
 	
 	void storeNonTreeEdge(int f, int eId) {
+		
+		fprintf(stderr, "storeNonTreeEdge(%d, %d)\n", f, eId);
+
 		FNT[f].store(Edge[eId].first, eId);
 		FNT[f].store(Edge[eId].second, eId);
 		assert(Lvl[eId]==-1);
@@ -55,15 +72,27 @@ class Holm {
 	}
 	
 	void removeNonTreeEdge (int f, int eId) {
+		
+		fprintf(stderr, "invalidate non tree edge %d from %d", eId, f);
+
 		assert(Lvl[eId]==f);
 		Lvl[eId] = -1;
 	}
 	
-	
-	
+	void removeTreeEdge(int f, int eId) {
+
+		fprintf(stderr, "removeTreeEdge(%d %d): %d %d\n", f, eId, Edge[eId].first, Edge[eId].second);
+
+		FT[f].removeEdge(Edge[eId].first, Edge[eId].second);
+		FNT[f].removeEdge(Edge[eId].first, Edge[eId].second);
+	}
+
 	public:
 	
 	bool query (int a, int b) {
+
+		fprintf(stderr,"sametree[0]: %d %d\n", a, b);
+
 		return FT[0].sameTree(a,b);
 	}
 	
@@ -98,8 +127,8 @@ class Holm {
 			Lvl[eId] = -1; //not valid anymore
 			
 			for (int i=0; i<=lvl; i++) {
-				FT[i].removeEdge(a, b);
-				FNT[i].removeEdge(a,b);
+				removeTreeEdge(i, eId);
+				
 			}
 			
 			/*find replacement edge */
@@ -121,6 +150,8 @@ class Holm {
 				
 				while (getNonTreeEdge(i, smaller, repId)) {
 					
+					fprintf(stderr, "sameTree[%d]: %d %d\n", i, Edge[repId].first, Edge[repId].second);
+
 					if (FT[i].sameTree(Edge[repId].first, Edge[repId].second)) {
 						/* increase the level to pay for this operation */
 						removeNonTreeEdge(i, repId);
@@ -172,8 +203,6 @@ int main() {
 	*/
 	
 	int n, m;
-
-	fprintf(stderr, "podaj parametry\n");
 
 	scanf ("%d %d", &n, &m);
 
